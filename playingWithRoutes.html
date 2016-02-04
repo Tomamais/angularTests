@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="playingWithRoutes">
+    <head>
+        <script src="js/angular.js"></script>
+        <script src="js/angular-route.js"></script>
+        <script type="text/ng-template" id="home.html">
+            <div>You are in home</div>
+        </script>
+        <script>
+            (function(){
+                angular.module("playingWithRoutes", ['ngRoute'])
+                .config(['$routeProvider', 
+                    function($routeProvider) {
+                        $routeProvider
+                        .when('/', {
+                            templateUrl: 'home.html'
+                        })
+                        .when('/first', {
+                            templateUrl: 'templates/first.html',
+                            controller: 'FirstController',
+                            controllerAs: 'firstCtrl'  
+                        })
+                        .when('/second', {
+                            templateUrl: 'templates/second.html',
+                            controller: 'SecondController',
+                            controllerAs: 'secondtCtrl'  
+                        })
+                        .otherwise({
+                            redirectTo: '/'
+                        })
+                }])
+                .controller('FirstController', function($scope){
+                    $scope.value = "Hey! You are in the FirstController";
+                })
+                .controller('SecondController', function($scope){
+                    $scope.value = "And surprise! You are now in the SecondController";
+                });
+            })();
+        </script>
+    </head>
+    <body>
+        <h1>Playing with routes in AngularJS</h1>
+        <h3>Menu</h3>
+        <ul>
+            <li><a href="#/">Home</a></li>
+            <li><a href="#first">First!</a></li>
+            <li><a href="#second">Second</a></li>
+        </ul>
+        <h3>Content</h3>
+        <div ng-view></div>
+    </body>
+</html>
