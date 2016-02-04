@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+    <head>
+        <script src="js/angular.js"></script>
+        <script>
+            // main closure
+            (function() {
+                angular.module("myApp", [])
+                .factory('$exceptionHandler', function() {
+                    return function(exception, cause) {
+                        console.log(exception, cause);
+                    };
+                })               
+                .directive("enter", function() {
+                    return function($scope, element) {
+                      element.bind("mouseenter", function() {
+                        console.log('Hey! Your mouse pointer is here!');
+                      })  
+                    };
+                })
+                .directive("leave", function() {
+                    return function($scope, element) {
+                      element.bind("mouseleave", function() {
+                        console.log('And now your mouse is gone!');
+                      })  
+                    };
+                });
+            })();
+        </script>
+    </head>
+    <body>
+        {{ 'And it works!!' }}
+        <div enter leave>This area should track you mouse moves</div>        
+    </body>
+</html>
+    
