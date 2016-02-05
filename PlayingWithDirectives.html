@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <title>Playing with directives</title>
+        <script src="js/angular.js"></script>
+        <script>
+            (function(){
+                angular.module('app', [])
+                .directive('elementDirective', function(){
+                    return {
+                        restrict: 'E',
+                        templateUrl: 'directives/element-directive.html'
+                    };
+                })
+                .directive('attributeDirective', function(){
+                    return {
+                        restrict: 'A',
+                        templateUrl: 'directives/attribute-directive.html'
+                    };
+                })
+                .directive('classDirective', function(){
+                    return {
+                        restrict: 'C',
+                        templateUrl: 'directives/class-directive.html'
+                    };
+                })
+                .directive('mDirective', function(){
+                    return {
+                        restrict: 'M',
+                        templateUrl: 'directives/m-directive.html'
+                    };
+                });
+            })();
+        </script>
+    </head>
+    <body>
+        <h1>Playing with directives</h1>
+        <h2>By Element</h2>
+        <element-directive></element-directive>
+        <h2>By Attribute</h2>
+        <div attribute-directive></div>
+        <h2>By Class</h2>
+        <div class="class-directive"></div>
+        <h2>By M</h2>
+        <!-- directive:m-directive -->
+    </body>
+</html>
