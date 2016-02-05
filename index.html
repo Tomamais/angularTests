@@ -1,37 +1,38 @@
-
 <!DOCTYPE html>
-<html ng-app="myApp">
+<html ng-app="app">
     <head>
+        <title>Content of this repository</title>
         <script src="js/angular.js"></script>
         <script>
-            // main closure
-            (function() {
-                angular.module("myApp", [])
-                .factory('$exceptionHandler', function() {
-                    return function(exception, cause) {
-                        console.log(exception, cause);
-                    };
-                })               
-                .directive("enter", function() {
-                    return function($scope, element) {
-                      element.bind("mouseenter", function() {
-                        console.log('Hey! Your mouse pointer is here!');
-                      })  
-                    };
-                })
-                .directive("leave", function() {
-                    return function($scope, element) {
-                      element.bind("mouseleave", function() {
-                        console.log('And now your mouse is gone!');
-                      })  
-                    };
+            (function(){
+                angular.module('app', [])
+                .controller('defaultController', function($scope){
+                    $scope.pages = [
+                        {
+                            url: 'ErrorHandlindAndEvents.html',
+                            title: 'Error Handlind And Events'
+                        },
+                        {
+                            url: 'PlayingWithDirectives.html',
+                            title: 'Playing With Directives'
+                        },
+                        {
+                            url: 'PlayingWithRoutes.html',
+                            title: 'Playing With Routes'
+                        },
+                        {
+                            url: 'ServiceVSFactoryVSProvider.html',
+                            title: 'Service VS Factory VS Provider'
+                        }
+                    ];
                 });
             })();
         </script>
     </head>
     <body>
-        {{ 'And it works!!' }}
-        <div enter leave>This area should track you mouse moves</div>        
+        <h1>Content of this repository</h1>
+        <div ng-controller="defaultController as defaultCtrl">
+            <p ng-repeat="page in pages"><a href="{{page.url}}">{{ page.title }}</a></p>
+        </div>
     </body>
 </html>
-    
